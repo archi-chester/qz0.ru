@@ -1,0 +1,11 @@
+<div *ngIf="posts != null">Posts:
+  <div *ngFor="let post of posts; let i=index">
+    #{{i + 1}}. {{post._id}} {{post.createdate}} -
+    {{post.posttitle}},
+    {{post.postbody}},
+    {{post.posttags}},
+    ----------------------
+  </div>
+</div>
+<i class="fa fa-chain">1</i>
+<div class="btn btn-primary fa fa-opencart"></div>
