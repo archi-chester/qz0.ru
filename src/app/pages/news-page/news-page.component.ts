@@ -1,4 +1,5 @@
 import {Component, OnInit} from '@angular/core';
+import {INews} from './news-page.types';
 
 @Component({
   selector: 'app-news-page',
@@ -6,10 +7,14 @@ import {Component, OnInit} from '@angular/core';
   styleUrls: ['./news-page.component.css']
 })
 export class NewsPageComponent implements OnInit {
+  //  паблики
+  //  массив новостей
+  public news: INews[] = [];
 
   constructor() { }
 
   ngOnInit() {
+    console.log(this.news);
   }
 
 }
