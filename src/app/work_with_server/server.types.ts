@@ -6,3 +6,12 @@ export interface IPostStructure {
     posttags: string; // тэги
     postbody: string; // тело
 }
+
+// экспорт типа для новостей в серверном формате
+export interface IServerNews {
+    author?: string; //  автор новости
+    date?: string; //  время публикации
+    picture?: string; //  графика
+    text: string; //  текст статьи
+    title: string;  //  заголовок
+}
