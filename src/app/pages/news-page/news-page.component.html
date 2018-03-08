@@ -4,8 +4,9 @@
   <div *ngIf="news.length != 0; else noNews"
         class="container mr-auto ml-auto ">
     <!--  Выводим количество найденных новостей В скрываемом алерте -->
-    <div class="alert alert-primary alert-dismissible fade show"
-           role="alert">Новостей: {{news.length}}
+    <div class="alert alert-primary alert-dismissible fade show w-75 mr-auto ml-auto" role="alert">
+      Новостей: {{news.length}}
+        из них с ps: {{news.length}}
       <!--  Кнопка для закрытия  -->
       <button type="button" class="close" data-dismiss="alert" aria-label="Close">
         <span aria-hidden="true">&times;</span>

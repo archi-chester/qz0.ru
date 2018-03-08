@@ -14,6 +14,6 @@ export class AppIndex {
 
   public getTopPadding(): string {
       // return NAVBAR_HEIGHT + "px";
-      return 30 + 'px';
+      return 1 + 'px';
   }
 }
