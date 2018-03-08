@@ -1,34 +1,50 @@
 <!--  В начале див общей обертки  -->
 <div>
   <!--  Если новости есть  -->
-  <div *ngIf="news.length != 0; else noNews">
-    <!--  Выводим количество найденных новостей  -->
-    Обнаружено {{news.length}} новостей.
+  <div *ngIf="news.length != 0; else noNews"
+        class="container mr-auto ml-auto ">
+    <!--  Выводим количество найденных новостей В скрываемом алерте -->
+    <div class="alert alert-primary alert-dismissible fade show"
+           role="alert">Новостей: {{news.length}}
+      <!--  Кнопка для закрытия  -->
+      <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+        <span aria-hidden="true">&times;</span>
+      </button>
+    </div>
   <!--  Выводим найденные новости перебором  -->
-    <div *ngFor="let article of news; let indexOfArticle of index">
+    <div *ngFor="let article of news; let indexOfArticle = index"
+         class="card mr-auto ml-auto mb-3 w-75 ">
       <!--  Заголовок -->
-      <div>
+      <div class="card-header">
         {{article.title}}
       </div>
       <!--  Вставляем картинку, если есть -->
-      <div *ngIf="article != undefined">
-        {{article.picture}}
-      </div>
-      <!--  Текст -->
-      <div>
-        {{article.text}}
-      </div>
-      <!--  Автор -->
-      <div>
-        {{article.author}}
-      </div>
-      <!--  Дата  -->
-      <div>
-        {{article.date}}
+      <img *ngIf="article != undefined"
+            class="card-img-top"
+            src="{{article.picture}}"
+            alt="{{article.title}}">
+      <!--  Тело  -->
+      <div class="card-body">
+        <blockquote class="blockquote mb-0">
+          <!--  Текст -->
+          <p>
+            {{article.text}}
+          </p>
+          <!--  Подвал  -->
+          <footer class="blockquote-footer">
+            <!--  Автор -->
+            <a class="card-link">
+              {{article.author}}
+            </a>
+            <!--  Дата  -->
+            <cite>
+              {{article.date}}
+            </cite>
+          </footer>
+        </blockquote>
       </div>
       <!--Вставляем разделитель если не последняя-->
       <div *ngIf="news.length > indexOfArticle + 1">
-        Разделитель
       </div>
     </div>
   </div>
