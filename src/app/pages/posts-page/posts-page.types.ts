@@ -5,4 +5,5 @@ export interface IPosts {
     createdate: string; // дата создания
     posttags: string; // тэги
     postbody: string; // тело
+    src_picture?: string; //  картинка
 }

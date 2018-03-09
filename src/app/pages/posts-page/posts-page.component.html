@@ -10,13 +10,13 @@
       <div class="card-header">
         {{post.posttitle}}
       </div>
-      <!--  Вставляем картинку, если есть -->
-      <img *ngIf="post != undefined"
-            class="card-img-top"
-            src="{{post._id}}"
-            alt="{{post.posttitle}}">
       <!--  Тело  -->
-      <div class="card-body">
+      <div class="card-body row">
+        <!--  Вставляем картинку, если есть -->
+        <img *ngIf="post != undefined"
+              class="rounded col-4"
+              src="{{post.src_picture}}"
+              alt="{{post.posttitle}}">
         <blockquote class="blockquote mb-0">
           <!--  Текст -->
           <p>
