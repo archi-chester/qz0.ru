@@ -3,11 +3,11 @@ import {ServerDataService} from '../../work_with_server/server.data.service';
 import {IPosts} from '../../app.types';
 
 @Component({
-  selector: 'app-posts-page',
-  templateUrl: './posts-page.component.html',
-  styleUrls: ['./posts-page.component.css']
+  selector: 'app-add-post',
+  templateUrl: './add-post.component.html',
+  styleUrls: ['./add-post.component.css']
 })
-export class PostsPageComponent implements OnInit {
+export class AddPostComponent implements OnInit {
   //  Защищенные переменные
   public posts: IPosts[];
   //  Приватные переменные
@@ -16,14 +16,7 @@ export class PostsPageComponent implements OnInit {
   constructor(service: ServerDataService) {
         this.service = service;
   }
-
   ngOnInit() {
-    this.posts = null;
-    this.service.getAllPosts()
-      .subscribe((posts) => {
-        this.posts = posts;
-    }
-  );
   }
 
 }

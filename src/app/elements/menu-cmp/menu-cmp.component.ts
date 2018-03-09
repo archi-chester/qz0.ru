@@ -33,4 +33,9 @@ export class MenuCmpComponent implements OnInit {
   public goToPostsPage(): void {
       this.router.navigate(['/' + new Paths().postsPage.path]);
   }
+
+  // переход на страницу постов
+  public goToAddPostPage(): void {
+      this.router.navigate(['/' + new Paths().addPostPage.path]);
+  }
 }

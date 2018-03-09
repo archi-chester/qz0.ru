@@ -27,4 +27,9 @@ export class Paths {
         path: 'posts',
     };
 
+    // путь к стартовой странице
+    public addPostPage: IPath = {
+        path: 'add_post',
+    };
+
 }

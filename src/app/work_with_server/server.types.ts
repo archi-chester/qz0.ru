@@ -3,8 +3,9 @@ export interface IServerPosts {
     _id: string; //  Id
     posttitle: string; // заголовок
     createdate: string; // дата создания
-    posttags: string; // тэги
+    posttags: string[]; // тэги
     postbody: string; // тело
+    picture?: string; //  графика
 }
 
 // экспорт типа для новостей в серверном формате

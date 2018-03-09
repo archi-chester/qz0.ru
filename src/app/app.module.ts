@@ -15,6 +15,7 @@ import {HttpClientModule} from '@angular/common/http';
 import {MenuCmpComponent} from './elements/menu-cmp/menu-cmp.component';
 import {NewsPageComponent} from './pages/news-page/news-page.component';
 import {PostsPageComponent} from './pages/posts-page/posts-page.component';
+import {AddPostComponent} from './pages/add-post/add-post.component';
 
 
 @NgModule({
@@ -27,6 +28,7 @@ import {PostsPageComponent} from './pages/posts-page/posts-page.component';
     MenuCmpComponent,
     NewsPageComponent,
     PostsPageComponent,
+    AddPostComponent,
   ],
   imports: [
     AlertModule.forRoot(),

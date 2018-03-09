@@ -8,7 +8,7 @@ import {HttpClient} from '@angular/common/http';
 import {newsUrl, postsUrl} from '../app.urls';
 import {INews} from '../pages/news-page/news-page.types';
 import {isNullOrUndefined} from 'util';
-import {IPosts} from '../pages/posts-page/posts-page.types';
+import {IPosts} from '../app.types';
 
 @Injectable()
 
@@ -53,7 +53,7 @@ export class ServerDataService {
           _id: post._id,
           createdate: post.createdate,
           posttitle: post.posttitle,
-          posttags: post.posttags,
+          posttags: post.posttags, //
           postbody: post.postbody,
           src_picture: this.pictureForNone,
         });

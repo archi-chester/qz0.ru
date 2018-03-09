@@ -1,6 +1,6 @@
 import {Component, OnInit} from '@angular/core';
 import {ServerDataService} from '../../work_with_server/server.data.service';
-import {IPosts} from '../posts-page/posts-page.types';
+import {IPosts} from '../../app.types';
 
 @Component({
     templateUrl: './login.page.html',

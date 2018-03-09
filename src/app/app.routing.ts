@@ -5,6 +5,7 @@ import {LoginPage} from './pages/login_page/login.page';
 import {NewsPageComponent} from './pages/news-page/news-page.component';
 import {StartPage} from './pages/start_page/start.page';
 import {PostsPageComponent} from './pages/posts-page/posts-page.component';
+import {AddPostComponent} from './pages/add-post/add-post.component';
 
 const paths: Paths = new Paths();
 
@@ -24,9 +25,13 @@ export const appRoutes: Routes = [
     // { canActivate: [UserInfo], component: StartPage,  path: paths.startPage.path },
     { component: StartPage,  path: paths.startPage.path },
 
-    // стартовая страница
+    //  страница с постами
     // { canActivate: [UserInfo], component: StartPage,  path: paths.startPage.path },
     { component: PostsPageComponent,  path: paths.postsPage.path },
+
+    // страница добавления поста
+    // { canActivate: [UserInfo], component: StartPage,  path: paths.startPage.path },
+    { component: AddPostComponent,  path: paths.addPostPage.path },
 
     // // путь к странице предложения в план (препланирование) - подробности
     // { canActivate: [UserInfo], component: PreplanningCurrentPlan, path: paths.preplanningCurrentPlanPage.path +
