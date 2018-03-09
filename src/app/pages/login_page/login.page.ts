@@ -1,6 +1,6 @@
 import {Component, OnInit} from '@angular/core';
 import {ServerDataService} from '../../work_with_server/server.data.service';
-import {IPostStructure} from '../../work_with_server/server.types';
+import {IPosts} from '../posts-page/posts-page.types';
 
 @Component({
     templateUrl: './login.page.html',
@@ -8,7 +8,7 @@ import {IPostStructure} from '../../work_with_server/server.types';
 
 export class LoginPage implements OnInit {
   //  Защищенные переменные
-  public posts: IPostStructure[];
+  public posts: IPosts[];
   public testValue: string = '';
   //  Приватные переменные
   private service: ServerDataService; // сервис для работы с бэкэндом

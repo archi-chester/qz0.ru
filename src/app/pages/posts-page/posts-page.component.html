@@ -1,3 +1,9 @@
-<p>
-  posts-page works!445678
-</p>
+<div *ngIf="posts != null">Posts:
+  <div *ngFor="let post of posts; let i=index">
+    #{{i + 1}}. {{post._id}} {{post.createdate}} -
+    {{post.posttitle}},
+    {{post.postbody}},
+    {{post.posttags}},
+    ----------------------
+  </div>
+</div>

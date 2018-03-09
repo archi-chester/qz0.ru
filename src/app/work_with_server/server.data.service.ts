@@ -3,11 +3,12 @@ import 'rxjs/add/operator/map';
 import 'rxjs/add/observable/of';
 import {Injectable} from '@angular/core';
 import {Observable} from 'rxjs/Observable';
-import {IPostStructure, IServerNews} from './server.types';
+import {IServerNews, IServerPosts} from './server.types';
 import {HttpClient} from '@angular/common/http';
 import {newsUrl, postsUrl} from '../app.urls';
 import {INews} from '../pages/news-page/news-page.types';
 import {isNullOrUndefined} from 'util';
+import {IPosts} from '../pages/posts-page/posts-page.types';
 
 @Injectable()
 
@@ -39,20 +40,38 @@ export class ServerDataService {
     }
   }
 
+  //   конвертер новостей Сервер => Клиент
+  public convertPostsStoL(serverPosts: IServerPosts[]): IPosts[] {
+    const posts: IPosts[] = [];
+    if (isNullOrUndefined(serverPosts)) {
+      return posts;
+    } else {
+      serverPosts.forEach((post: IServerPosts) => {
+        posts.push({
+          _id: post._id,
+          createdate: post.createdate,
+          posttitle: post.posttitle,
+          posttags: post.posttags,
+          postbody: post.postbody,
+        });
+        });
+      return posts;
+    }
+  }
+
   //  функция получения новостей
   public getAllNews(): Observable<INews[]> {
     return this.http.get(newsUrl)
-      .map((res: IServerNews[]) => this.convertNewsStoL(res)
-      ) //  ошибка
+      .map((res: IServerNews[]) => this.convertNewsStoL(res))
+      //  ошибка
       .catch((err: boolean) => Observable.of([]));
   }
 
   //  функция получения постов
-  public getAllPosts(): Observable<IPostStructure[]> {
+  public getAllPosts(): Observable<IPosts[]> {
     return this.http.get(postsUrl)
-      .map((res) => {
-      console.log(res);
-      return res as IPostStructure[];
-    }) ;
+      .map((res: IServerPosts[]) => this.convertPostsStoL(res))
+      //  ошибка
+      .catch((err: boolean) => Observable.of([]));
   }
 }
