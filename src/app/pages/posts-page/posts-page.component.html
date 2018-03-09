@@ -1,9 +1,47 @@
-<div *ngIf="posts != null">Posts:
-  <div *ngFor="let post of posts; let i=index">
-    #{{i + 1}}. {{post._id}} {{post.createdate}} -
-    {{post.posttitle}},
-    {{post.postbody}},
-    {{post.posttags}},
-    ----------------------
+<!--  В начале див общей обертки  -->
+<div>
+  <!--  Если посты есть  -->
+  <div *ngIf="posts.length != 0; else noPosts"
+        class="container mr-auto ml-auto ">
+    <!--  Выводим найденные посты перебором  -->
+    <div *ngFor="let post of posts; let indexOfArticle = index"
+         class="card mr-auto ml-auto mb-3 w-75 ">
+      <!--  Заголовок -->
+      <div class="card-header">
+        {{post.posttitle}}
+      </div>
+      <!--  Вставляем картинку, если есть -->
+      <img *ngIf="post != undefined"
+            class="card-img-top"
+            src="{{post._id}}"
+            alt="{{post.posttitle}}">
+      <!--  Тело  -->
+      <div class="card-body">
+        <blockquote class="blockquote mb-0">
+          <!--  Текст -->
+          <p>
+            {{post.postbody}}
+          </p>
+          <!--  Подвал  -->
+          <footer class="blockquote-footer">
+            <!--  Дата  -->
+            <cite>
+              {{post.createdate}}
+            </cite>
+            <!--  Тэги -->
+            <a class="card-link">
+              {{post.posttags}}
+            </a>
+          </footer>
+        </blockquote>
+      </div>
+      <!--Вставляем разделитель если не последняя-->
+      <div *ngIf="posts.length > indexOfArticle + 1">
+      </div>
+    </div>
   </div>
+  <!--  Если нет постов  -->
+  <ng-template #noPosts>
+    Постов нет.
+  </ng-template>
 </div>
