@@ -18,9 +18,9 @@ export class AddPostComponent implements OnInit {
     postbody: '', // тело
     src_picture: '', //  картинка
   };
-  @Input() public posttitle: ''; // заголовок
-  @Input() public postbody: ''; // тело
-  @Input() public src_picture: ''; //  картинка
+  // @Input() public posttitle: ''; // заголовок
+  // @Input() public postbody: ''; // тело
+  // @Input() public src_picture: ''; //  картинка
   //  Приватные переменные
   private service: ServerDataService; // сервис для работы с бэкэндом
 
@@ -38,7 +38,26 @@ export class AddPostComponent implements OnInit {
                  body: HTMLInputElement,
                  file: HTMLInputElement): void {
     //
-    console.log(title.value, body.value, file.value);
+    console.log(title.value.trim().replace(/<.*?>/g, ''),         body.value.trim(), file.value);
+    //  заполняем тайтл. регулярка отшибет все теги
+    this.post.posttitle = title.value.trim().replace(/<.*?>/g, '');
+    //  заполняем текст. регулярка отшибет все теги
+    this.post.postbody = body.value.trim().replace(/<.*?>/g, '');
+    //  на файл пока заглушку
+    this.post.src_picture = file.value;
+    //  системный вызов
+    console.log(this.post);
+  }
+
+  //  добавить тег к массиву
+  public addTag(tag: HTMLInputElement): void {
+    //
+    if (!isNullOrUndefined(this.post.posttags) &&
+        tag.value !== '' &&
+        this.post.posttags.indexOf(tag.value.trim()) < 0) {
+      this.post.posttags.push(tag.value.trim());
+      this.post.posttags.sort();
+    }
   }
 
   //  Очистка полей формы
@@ -53,15 +72,11 @@ export class AddPostComponent implements OnInit {
     this.post.posttags = [];
   }
 
-  //  добавить тег к массиву
-  public addTag(tag: HTMLInputElement): void {
-    //
-    if (!isNullOrUndefined(this.post.posttags) &&
-        tag.value !== '' &&
-        this.post.posttags.indexOf(tag.value) < 0) {
-      this.post.posttags.push(tag.value);
-      this.post.posttags.sort();
-    }
+  public testForm(title: HTMLInputElement,
+                  body: HTMLInputElement,
+                  send: HTMLInputElement): void {
+    title.value !== '' && body.value !== '' ?
+      send.hidden = false : send.hidden = true;
   }
 
 }

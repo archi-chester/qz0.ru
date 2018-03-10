@@ -12,6 +12,10 @@
             <!--  Заголовок -->
             <label for="exampleFormControlTextarea1">Заголовок:</label>
             <textarea #postTitle
+                      required
+                      (change)="testForm(postTitle, postBody, sendButton)"
+                      (keyup)="testForm(postTitle, postBody, sendButton)"
+                      (mousemove)="testForm(postTitle, postBody, sendButton)"
                       class="form-control"
                       id="exampleFormControlTextarea1" rows="1"></textarea>
             <!--  Вставляем картинку, если есть -->
@@ -23,8 +27,12 @@
                       id="exampleFormControlFile1">
             </div>
             <!--  Текст -->
-            <label for="exampleFormControlTextarea1">Текст поста:</label>
+            <label for="exampleFormControlTextarea2">Текст поста:</label>
             <textarea #postBody
+                      required
+                      (change)="testForm(postTitle, postBody, sendButton)"
+                      (keyup)="testForm(postTitle, postBody, sendButton)"
+                      (mousemove)="testForm(postTitle, postBody, sendButton)"
                       class="form-control mb-lg-2"
                       id="exampleFormControlTextarea2" rows="6"></textarea>
             <!--  Тэги -->
@@ -51,7 +59,7 @@
                 <button
                     class="btn btn-sm mr-1"
                     *ngFor="let tag of post.posttags"
-                     (click)="true"
+                     (click)="testForm(postTitle, postBody)"
                     >{{tag}}
                 </button>
               </div>
@@ -61,8 +69,11 @@
               <div class="btn-group ml-auto mr-2"
                    role="group"
                    aria-label="Second group">
-                <button type="button"
+                <button #sendButton
+                        hidden
+                        type="button"
                         (click)="addPost(postTitle, postBody, srcPicture)"
+                        (focus)="testForm(postTitle, postBody, sendButton)"
                         class="btn">Отправить</button>
                 <button type="button"
                         (click)="clearForm(postTitle, postBody, srcPicture, tagInput)"
