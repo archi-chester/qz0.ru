@@ -1,6 +1,7 @@
 import {Component, Input, OnInit} from '@angular/core';
 import {ServerDataService} from '../../work_with_server/server.data.service';
 import {IPosts} from '../../app.types';
+import {isNullOrUndefined} from 'util';
 
 @Component({
   selector: 'app-add-post',
@@ -17,6 +18,9 @@ export class AddPostComponent implements OnInit {
     postbody: '', // тело
     src_picture: '', //  картинка
   };
+  @Input() public posttitle: ''; // заголовок
+  @Input() public postbody: ''; // тело
+  @Input() public src_picture: ''; //  картинка
   //  Приватные переменные
   private service: ServerDataService; // сервис для работы с бэкэндом
 
@@ -30,13 +34,34 @@ export class AddPostComponent implements OnInit {
   }
 
   //  отправка поста сервису
-  public addPost(): void {
+  public addPost(title: HTMLInputElement,
+                 body: HTMLInputElement,
+                 file: HTMLInputElement): void {
     //
+    console.log(title.value, body.value, file.value);
+  }
+
+  //  Очистка полей формы
+  public clearForm(title: HTMLInputElement,
+                   body: HTMLInputElement,
+                   file: HTMLInputElement,
+                   tag: HTMLInputElement): void {
+    title.value = '';
+    body.value = '';
+    file.value = '';
+    tag.value = '';
+    this.post.posttags = [];
   }
 
   //  добавить тег к массиву
-  public addTag(tag: string): void {
+  public addTag(tag: HTMLInputElement): void {
     //
+    if (!isNullOrUndefined(this.post.posttags) &&
+        tag.value !== '' &&
+        this.post.posttags.indexOf(tag.value) < 0) {
+      this.post.posttags.push(tag.value);
+      this.post.posttags.sort();
+    }
   }
 
 }

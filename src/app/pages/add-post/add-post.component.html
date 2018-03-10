@@ -11,35 +11,63 @@
           <div class="form-group">
             <!--  Заголовок -->
             <label for="exampleFormControlTextarea1">Заголовок:</label>
-            <textarea class="form-control"
+            <textarea #postTitle
+                      class="form-control"
                       id="exampleFormControlTextarea1" rows="1"></textarea>
             <!--  Вставляем картинку, если есть -->
-            <label for="exampleFormControlFile1">Картинка:</label>
-            <input type="file"
-                   class="form-control-file"
-                   id="exampleFormControlFile1">
+            <div class="input-group mb-lg-2">
+              <label for="exampleFormControlFile1">Картинка:</label>
+              <input #srcPicture
+                      type="file"
+                      class="form-control-file"
+                      id="exampleFormControlFile1">
+            </div>
             <!--  Текст -->
             <label for="exampleFormControlTextarea1">Текст поста:</label>
-            <textarea class="form-control mb-lg-2"
+            <textarea #postBody
+                      class="form-control mb-lg-2"
                       id="exampleFormControlTextarea2" rows="6"></textarea>
             <!--  Тэги -->
-            <div class="input-group mb-lg-2">
+            <div class="input-group mb-lg-2 w-50">
               <div class="input-group-prepend">
                 <div class="input-group-text">Тэги:</div>
               </div>
-              <input type="text"
+              <input #tagInput
+                     type="text"
                      class="form-control"
                      id="inlineFormInputGroup" placeholder="Username">
-              <button type="button"
-                      class="btn">Добавить тэг</button>
-            </div>              <!--  Кнопки отправки/Очистки  -->
-            <div class="btn-group ml-auto mr-2"
-                 role="group"
-                 aria-label="Second group">
-              <button type="button"
-                      class="btn">Отправить</button>
-              <button type="button"
-                      class="btn btn-outline-danger">Очистить</button>
+              <div class="input-group-append">
+                <button type="button"
+                        (click)="addTag(tagInput)"
+                        class="btn">Добавить тэг</button>
+              </div>
+            </div>
+            <!--  Список тэгов  -->
+            <div *ngIf="post.posttags != undefined && post.posttags.length > 0">
+              <div class="input-group mb-2">
+                <div class="btn btn-sm btn-sm base-style mr-2">
+                    Тэги:
+                </div>
+                <button
+                    class="btn btn-sm mr-1"
+                    *ngFor="let tag of post.posttags"
+                     (click)="true"
+                    >{{tag}}
+                </button>
+              </div>
+            </div>
+            <!--  Кнопки отправки/Очистки  -->
+            <div class="text-right">
+              <div class="btn-group ml-auto mr-2"
+                   role="group"
+                   aria-label="Second group">
+                <button type="button"
+                        (click)="addPost(postTitle, postBody, srcPicture)"
+                        class="btn">Отправить</button>
+                <button type="button"
+                        (click)="clearForm(postTitle, postBody, srcPicture, tagInput)"
+                        class="btn btn-outline-danger">Очистить</button>
+              </div>
             </div>
           </div>
         </form>
