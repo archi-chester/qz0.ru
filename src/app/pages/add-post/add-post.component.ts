@@ -18,6 +18,7 @@ export class AddPostComponent implements OnInit {
     postbody: '', // тело
     src_picture: '', //  картинка
   };
+  public selectedFile: File;  //  выбранный файл
   // @Input() public posttitle: ''; // заголовок
   // @Input() public postbody: ''; // тело
   // @Input() public src_picture: ''; //  картинка
@@ -46,7 +47,9 @@ export class AddPostComponent implements OnInit {
     //  на файл пока заглушку
     this.post.src_picture = file.value;
     //  системный вызов
-    console.log(this.post);
+    this.service.addNewPost(this.post).subscribe(
+      ((res: boolean) => console.log('!:', res))
+    );
   }
 
   //  добавить тег к массиву
@@ -79,4 +82,17 @@ export class AddPostComponent implements OnInit {
       send.hidden = false : send.hidden = true;
   }
 
+  public onFileChanged(event) {
+    console.log('onFileChanged');
+    this.selectedFile = event.target.files;
+  }
+
+  public onUpload() {
+    //  системный вызов
+    console.log('onUpload');
+    const uploadData = new FormData();
+    uploadData.append('myFile', this.selectedFile, this.selectedFile.name);
+    this.service.uploadPostFiles(uploadData)
+      .subscribe();
+  }
 }
