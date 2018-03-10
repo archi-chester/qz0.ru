@@ -1,22 +1,48 @@
 <div class="container mr-auto ml-auto ">
     <!--  Выводим найденные посты перебором  -->
-    <div class="card mr-auto ml-auto mb-3 w-75 ">
+    <div class="card mr-auto ml-auto mb-2 w-75 ">
       <!--  Заголовок -->
       <div class="card-header">
         Добавляем новую запись
       </div>
       <!--  Тело  -->
-      <div class="card-body row">
-      <!--  Заголовок -->
-        ЗДЕСЬ заголовок
-        <!--  Вставляем картинку, если есть -->
-        ЗДЕСЬ картинка
-          <!--  Текст -->
-        ЗДЕСЬ текст
-
-          <!--  Подвал  -->
+      <div class="card-body m-1">
+        <form>
+          <div class="form-group">
+            <!--  Заголовок -->
+            <label for="exampleFormControlTextarea1">Заголовок:</label>
+            <textarea class="form-control"
+                      id="exampleFormControlTextarea1" rows="1"></textarea>
+            <!--  Вставляем картинку, если есть -->
+            <label for="exampleFormControlFile1">Картинка:</label>
+            <input type="file"
+                   class="form-control-file"
+                   id="exampleFormControlFile1">
+            <!--  Текст -->
+            <label for="exampleFormControlTextarea1">Текст поста:</label>
+            <textarea class="form-control mb-lg-2"
+                      id="exampleFormControlTextarea2" rows="6"></textarea>
             <!--  Тэги -->
-        ТЕГИ
+            <div class="input-group mb-lg-2">
+              <div class="input-group-prepend">
+                <div class="input-group-text">Тэги:</div>
+              </div>
+              <input type="text"
+                     class="form-control"
+                     id="inlineFormInputGroup" placeholder="Username">
+              <button type="button"
+                      class="btn">Добавить тэг</button>
+            </div>              <!--  Кнопки отправки/Очистки  -->
+            <div class="btn-group ml-auto mr-2"
+                 role="group"
+                 aria-label="Second group">
+              <button type="button"
+                      class="btn">Отправить</button>
+              <button type="button"
+                      class="btn btn-outline-danger">Очистить</button>
+            </div>
+          </div>
+        </form>
 
       </div>
     </div>
