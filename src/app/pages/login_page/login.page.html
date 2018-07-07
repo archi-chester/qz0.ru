@@ -1,3 +1,23 @@
-<div class="">
-  Hello, man!
+<div *ngIf="user == null; else logined" class="">          <!--  Вставляем картинку, если есть -->
+  <div class="input-group">
+    <i class="fa fa-2x fa-user-o mr-2 ml-2"></i>
+    <input #userLogin
+           type="text"
+           name="userLogin"
+           ngModel
+           (change)="true"
+           id="userLogin">
+    <i class="fa fa-2x fa-lock mr-2 ml-2"></i>
+    <input #userPassword
+           type="password"
+           name="userPassword"
+           ngModel
+           (change)="true"
+           id="userPassword">
+    <button class='btn' (click)="login(userLogin, userPassword)">Войти</button>
+  </div>
 </div>
+<ng-template #logined>
+  {{user.login == null ? 'Гость' : user.login}}
+  <button (click)="login()">Выйти</button>
+</ng-template>
