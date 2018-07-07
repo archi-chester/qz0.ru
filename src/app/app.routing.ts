@@ -12,7 +12,7 @@ const paths: Paths = new Paths();
 export const appRoutes: Routes = [
 
     //  страничка по умолчанию
-    { path: '', pathMatch: 'full', redirectTo: paths.loginPage.path},
+    { path: '', pathMatch: 'full', redirectTo: paths.startPage.path},
 
     // логин
     { component: LoginPage,  path: paths.loginPage.path },

@@ -16,6 +16,7 @@ import {MenuCmpComponent} from './elements/menu-cmp/menu-cmp.component';
 import {NewsPageComponent} from './pages/news-page/news-page.component';
 import {PostsPageComponent} from './pages/posts-page/posts-page.component';
 import {AddPostComponent} from './pages/add-post/add-post.component';
+import {FormsModule} from '@angular/forms';
 
 
 @NgModule({
@@ -35,6 +36,7 @@ import {AddPostComponent} from './pages/add-post/add-post.component';
     BrowserModule,
     RouterModule.forRoot(appRoutes, {useHash: true}),
     HttpClientModule,
+    FormsModule,
   ],
   providers: [
         ServerDataService,

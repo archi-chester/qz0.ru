@@ -112,7 +112,10 @@ export class ServerDataService {
   public uploadPostFiles(uploadData: FormData): Observable<string> {
     console.log('uploadPostFiles');
     // дергаем сервис
-    return this.http.post(uploadUrl, uploadData)
+    return this.http.post(uploadUrl, uploadData, {
+    reportProgress: true,
+    observe: 'events'
+  })
       .map(event => String(event));
       //  ошибка
   }

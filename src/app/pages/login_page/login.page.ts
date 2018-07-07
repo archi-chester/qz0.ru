@@ -1,15 +1,15 @@
 import {Component, OnInit} from '@angular/core';
 import {ServerDataService} from '../../work_with_server/server.data.service';
-import {IPosts} from '../../app.types';
 
 @Component({
+    selector: 'login-page',
     templateUrl: './login.page.html',
 })
 
 export class LoginPage implements OnInit {
+  //  Паблик переменные
+  public user:
   //  Защищенные переменные
-  public posts: IPosts[];
-  public testValue: string = '';
   //  Приватные переменные
   private service: ServerDataService; // сервис для работы с бэкэндом
   //  Конструктор
@@ -19,16 +19,6 @@ export class LoginPage implements OnInit {
 
   // Инициализация
   public ngOnInit(): void {
-    this.posts = null;
-    this.service.getAllPosts()
-      .subscribe((posts) => {
-        this.posts = posts;
-        console.log('ngOnInit: ');
-        console.log(posts);
-        // console.log(this.posts);
-        // console.log(String(this.posts[1]._id));
-        this.testValue = this.posts[1].postbody;
-    }
-  );
+  //
   }
 }

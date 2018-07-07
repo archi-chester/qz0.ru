@@ -38,12 +38,11 @@
 // import 'classlist.js';  // Run `npm install --save classlist.js`.
 
 /** IE10 and IE11 requires the following for the Reflect API. */
-// import 'core-js/es6/reflect';
-
-
+import 'core-js/es6';
 /** Evergreen browsers require these. **/
 // Used for reflect-metadata in JIT. If you use AOT (and only Angular decorators), you can remove.
 import 'core-js/es7/reflect';
+// import 'core-js/es6/reflect';
 
 
 /**
@@ -70,10 +69,19 @@ import 'core-js/es7/reflect';
 /***************************************************************************************************
  * Zone JS is required by default for Angular itself.
  */
-import 'zone.js/dist/zone';  // Included with Angular CLI.
+// import 'zone.js/dist/zone';  // Included with Angular CLI.
+require('zone.js/dist/zone');
 
 
 
 /***************************************************************************************************
  * APPLICATION IMPORTS
  */
+
+if (process.env.ENV === 'production') {
+  // Production
+} else {
+  // Development and test
+  Error['stackTraceLimit'] = Infinity;
+  require('zone.js/dist/long-stack-trace-zone');
+}

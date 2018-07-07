@@ -2,6 +2,7 @@ import {Component, Input, OnInit} from '@angular/core';
 import {ServerDataService} from '../../work_with_server/server.data.service';
 import {IPosts} from '../../app.types';
 import {isNullOrUndefined} from 'util';
+import {NgForm} from '@angular/forms';
 
 @Component({
   selector: 'app-add-post',
@@ -82,9 +83,16 @@ export class AddPostComponent implements OnInit {
       send.hidden = false : send.hidden = true;
   }
 
-  public onFileChanged(event) {
+  public onFileChanged(event: any) {
     console.log('onFileChanged');
-    this.selectedFile = event.target.files;
+    console.log(event);
+    this.selectedFile = event.target.files[0];
+    console.log(this.selectedFile);
+  }
+
+  public onSubmit(form: NgForm) {
+    console.log("1");
+    console.log(form);
   }
 
   public onUpload() {
@@ -92,6 +100,7 @@ export class AddPostComponent implements OnInit {
     console.log('onUpload');
     const uploadData = new FormData();
     uploadData.append('myFile', this.selectedFile, this.selectedFile.name);
+    console.log('onUpload2');
     this.service.uploadPostFiles(uploadData)
       .subscribe();
   }
